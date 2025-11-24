@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
     const tl = gsap.timeline({ delay: 0.3 });
 
@@ -48,9 +50,6 @@ export default function Navbar() {
       },
       "-=0.3"
     );
-
-    // Laser animation after all
-    
   }, []);
 
   return (
@@ -68,10 +67,7 @@ export default function Navbar() {
             <li key={item} className="nav-item">
               <Link
                 href={`#${item.toLowerCase()}`}
-                className="relative px-2 py-1
-                after:absolute after:left-0 after:-bottom-0.5 after:h-0.5
-                after:w-0 after:bg-blue-500
-                after:transition-all after:duration-300 hover:after:w-full"
+                className="relative px-2 py-1 after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-0 after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-full"
               >
                 {item}
               </Link>
@@ -82,12 +78,12 @@ export default function Navbar() {
           <li className="hire-btn relative">
             <Link
               href="#contact"
-              className="hire-button relative z-10 px-4 py-2 rounded-md bg-blue-500 hover:bg-blue-600 transition"
+              className="hire-button relative px-4 py-2 rounded-md bg-blue-500 hover:bg-blue-600 transition"
             >
               Hire Me
             </Link>
 
-            {/* Laser border */}
+            {/* Laser */}
             <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
               <rect
                 className="laser-line"
@@ -118,21 +114,70 @@ export default function Navbar() {
           </li>
         </ul>
 
-        {/* Mobile Menu Icon */}
-        <div className="md:hidden text-white">
-          <button>
-            <svg
-              className="w-7 h-7"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-white"
+          onClick={() => setMenuOpen((prev) => !prev)}
+        >
+          <svg
+            className="w-7 h-7"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d={
+                menuOpen
+                  ? "M6 18L18 6M6 6l12 12"
+                  : "M4 6h16M4 12h16M4 18h16"
+              }
+            />
+          </svg>
+        </button>
       </div>
+
+      {/* Mobile Dropdown */}
+      {menuOpen && (
+        <div className="md:hidden bg-black/60 backdrop-blur-xl border-t border-white/10">
+          <ul className="flex flex-col text-white py-4 space-y-4 text-center">
+
+            {["Home", "Projects", "Skills", "Contact"].map((item) => (
+              <li key={item} className="mobile-item">
+                <Link
+                  href={`#${item.toLowerCase()}`}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item}
+                </Link>
+              </li>
+            ))}
+
+            <li>
+              <Link
+                href="#contact"
+                className="px-4 py-2 bg-blue-500 rounded-md"
+                onClick={() => setMenuOpen(false)}
+              >
+                Hire Me
+              </Link>
+            </li>
+
+            <li>
+              <a
+                href="/resume.pdf"
+                download
+                className="px-4 py-2 border border-gray-500 rounded-md"
+                onClick={() => setMenuOpen(false)}
+              >
+                Resume
+              </a>
+            </li>
+          </ul>
+        </div>
+      )}
     </nav>
   );
 }
