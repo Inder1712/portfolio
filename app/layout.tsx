@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import HeroBackgroundVideo from "@/components/HeeroBackgroundVedio";
+import BirdGSAP from "@/components/BirdGsap";
+import Plane from "@/components/Plane";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,13 +30,102 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Navbar/>
-        <HeroBackgroundVideo/>
-        
-        {children}
-      </body>
+  style={{
+    backgroundImage: "url('/background/background.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundAttachment: "fixed",
+  }}
+  className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+>
+  <img
+  className="bird"
+  src="/background/Bird.png"
+  style={{
+    position: "fixed",
+    top: "12%",
+    right: "-5%",
+    width: "150px",
+    height: "auto",
+    pointerEvents: "none",
+    zIndex: -1,        // ⭐ send behind content
+  }}
+/>
+<img
+  className="bird"
+  src="/background/Bird2.png"
+  style={{
+    position: "fixed",
+    top: "25%",
+    right: "-15%",
+    width: "100px",
+    height: "auto",
+    pointerEvents: "none",
+    zIndex: -1,        // ⭐ send behind content
+  }}
+/>
+<img
+  className="bird"
+  src="/background/Bird1.png"
+  style={{
+    position: "fixed",
+    top: "5%",
+    right: "-13%",
+    width: "150px",
+    height: "auto",
+    pointerEvents: "none",
+    zIndex: -1,        // ⭐ send behind content
+  }}
+/>
+<img
+  src="/background/Cow.gif"
+  id="cow"
+  style={{
+    position: "fixed",
+    top: "60%",
+    left: "33%",
+    width: "150px",
+    height: "auto",
+    pointerEvents: "none",
+    zIndex: -1,        // ⭐ send behind content
+  }}
+/>
+
+<img
+  className="bird"
+  src="/background/Bird4.png"
+  style={{
+    position: "fixed",
+    top: "11%",
+    right: "-19%",
+    width: "100px",
+    height: "auto",
+    pointerEvents: "none",
+    zIndex: -1,        // ⭐ send behind content
+  }}
+/>
+<img
+  id="plane"
+  src="/background/plane.png"
+  style={{
+    position: "fixed",
+    top: "40%",
+    left: "-12%",
+    width: "150px",
+    height: "auto",
+    transform: "rotate(-10deg)",
+    pointerEvents: "none",
+    zIndex: -1,        // ⭐ send behind content
+  }}
+/>
+
+  <Navbar />
+<Plane/>
+  <BirdGSAP/>
+
+  {children}
+</body>
+
     </html>
   );
 }

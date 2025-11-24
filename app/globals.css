@@ -12,6 +12,18 @@
     --foreground: #ededed;
   }
 }
+@media (max-width: 1025px) {
+  body {
+    background-image: none !important;
+    background-color: #87ceeb !important; /* sky blue */
+  }
+
+  /* Hide animated images (optional) */
+  .bird,
+  #plane,#cow {
+    display: none !important;
+  } 
+}
 
 body {
   background: var(--background);
