@@ -141,7 +141,7 @@ export default function Navbar() {
 
       {/* Mobile Dropdown */}
       {menuOpen && (
-        <div className="md:hidden bg-black/60 backdrop-blur-xl border-t border-white/10">
+        <div className="md:hidden bg-white/15 backdrop-blur-xl border-t border-white/10">
           <ul className="flex flex-col text-white py-4 space-y-4 text-center">
 
             {["Home", "Projects", "Skills", "Contact"].map((item) => (
